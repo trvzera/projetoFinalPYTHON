@@ -1,0 +1,30 @@
+Tabela 1 - Afazeres domésticos
+
+Persona / Cenário:
+● Personagens: Maria (Secretária de Assistência Social da Bahia), Fátima (Secretária
+de Políticas para Mulheres de Pernambuco), Antônio (Gestor do Amazonas), Luíza
+(Gestora do Ceará).
+● História: Eles se reuniram para elaborar novas políticas públicas voltadas à divisão
+do trabalho de cuidado não remunerado entre os estados. Eles precisam entender
+quantas horas semanais homens e mulheres dedicam aos afazeres domésticos e ao
+cuidado de pessoas, bem como a distribuição por raça entre homens e mulheres,
+mulheres pretas/pardas e mulheres brancas, homens pretos e pardos e homens
+brancos.
+Perguntas de Negócio / Análise:
+● Qual é a discrepância média de horas dedicadas aos afazeres domésticos entre
+homens e mulheres por estado? E por gênero e raça?
+● Como essa divisão evoluiu nos últimos anos nos estados analisados versus a média
+nacional?
+● Há diferença significativa entre quem trabalha fora e quem está desempregado?
+Requisitos para o Dashboard (Streamlit):
+● Barra lateral: Filtro de estados (BA, PE, CE, etc.), faixa etária e ano.
+● Gráficos: Gráficos de barras comparando horas semanais por sexo e estado;
+boxplot com distribuição de horas.KPI
+● Conteúdo adicional: Seção de reportagens/notícias sobre a "Carga Mental
+Feminina" e sobre o "Economia do Cuidado", acompanhadas de imagens
+ilustrativas.
+● Upload: Possibilidade de upload dos dados
+Apresentação
+● Roda de conversa e explicação dos cenários.
+
+● Vocês são uma startup de análise de dados.
