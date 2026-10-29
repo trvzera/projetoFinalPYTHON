@@ -6,7 +6,7 @@ import plotly.express as px
 
 path = "Tabela 1.1.1.xls"
 
-bruto = pd.read_excel(path, engine="xlrd", header=None)
+bruto = pd.read_excel(path, header=None)
 indicador_1 = bruto.iloc[8:41].copy()
 indicador_1.columns = [
     "uf_regiao",
@@ -24,21 +24,17 @@ for col in indicador_1.columns[1:]:
     indicador_1[col] = pd.to_numeric(indicador_1[col], errors="coerce")
     
 
+# ========= BRASIL ==========
 
-df = pd.DataFrame({
-    'Regiao': ['Suldeste', 'Nordeste', 'Sul', 'Norte', 'Centro-Oeste'],
-    'Mulheres': [18.5, 19.2, 17.8, 18.0, 17.5],
-    'Homens': [10.2, 11.0, 9.8, 10.5, 10.0]
-}).melt(id_vars=['Regiao'], var_name='Gênero', value_name='Horas')
+brasil = indicador_1.loc[indicador_1["uf_regiao"] == "Brasil"].iloc[0]
 
-fig = px.bar(
-    df, 
-    x='Regiao', y='Horas', 
-    color='Gênero',
-    barmode='group',
-    orientation='v',
-    color_continuous_scale='Viridis',
-    title="Horas Dedicadas a Afazeres Domésticos por Região"
-)
+homens = (brasil["homem_branca"] + brasil["homem_preta_parda"]) / 2 # Todos homens brasil
+mulheres = (brasil["mulher_branca"] + brasil["mulher_preta_parda"]) / 2 # Todas mulheres brasil
 
-st.plotly_chart(fig, use_container_width=True)
+mulher_homem_preto_pardo = (brasil["homem_preta_parda"] + brasil["mulher_preta_parda"]) / 2 # Todas pessoas pretas/pardas brasil
+mulher_homem_branca = (brasil["homem_branca"] + brasil["mulher_branca"]) # Todas pessoas brancas brasil
+
+# =========== RONDONIA ============
+
+
+
