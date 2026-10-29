@@ -101,4 +101,23 @@ ceara_branca = ceara["total_branca"] # Todas pessoas brancas ceara
 ceara_homens_pretos_pardos = ceara["homem_preta_parda"]
 ceara_homens_brancos = ceara["homem_branca"]
 ceara_mulheres_pretas_pardas = ceara["mulher_preta_parda"]
-ceara_mulheres_brancas = ceara["mulher_branca"]
+ceara_mulheres_brancas = ceara["mulher_branca"] 
+
+
+df = pd.DataFrame({
+    'Regiao': ['Bahia', 'Pernambuco', 'Amazonas', 'Ceará'],
+    'Mulheres': [bahia_mulheres, pernambuco_mulheres, amazonas_mulheres, ceara_mulheres],
+    'Homens': [bahia_homens, pernambuco_homens, amazonas_homens, ceara_homens]
+}).melt(id_vars=['Regiao'], var_name='Gênero', value_name='Horas')
+
+fig = px.bar(
+    df, 
+    x='Regiao', y='Horas', 
+    color='Gênero',
+    barmode='group',
+    orientation='v',
+    color_continuous_scale='Viridis',
+    title="Horas Dedicadas a Afazeres Domésticos por Região dividido por gênero"
+)
+
+st.plotly_chart(fig, use_container_width=True)
