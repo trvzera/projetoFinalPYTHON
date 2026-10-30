@@ -121,3 +121,17 @@ fig = px.bar(
 )
 
 st.plotly_chart(fig, use_container_width=True)
+
+
+
+left, right = st.columns([2, 2])
+left.image("img\image.png")
+right.image("img\image (2).png")
+
+left, right = st.columns([2.66, 1.5])
+left.image("img\image (3).png")
+right.image("img\image (4).png")
+
+
+
+
