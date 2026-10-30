@@ -104,33 +104,118 @@ ceara_mulheres_pretas_pardas = ceara["mulher_preta_parda"]
 ceara_mulheres_brancas = ceara["mulher_branca"] 
 
 
-df = pd.DataFrame({
-    'Regiao': ['Bahia', 'Pernambuco', 'Amazonas', 'Ceará'],
-    'Mulheres': [bahia_mulheres, pernambuco_mulheres, amazonas_mulheres, ceara_mulheres],
-    'Homens': [bahia_homens, pernambuco_homens, amazonas_homens, ceara_homens]
-}).melt(id_vars=['Regiao'], var_name='Gênero', value_name='Horas')
+# ======= STREAMLIT
 
-fig = px.bar(
-    df, 
-    x='Regiao', y='Horas', 
-    color='Gênero',
-    barmode='group',
-    orientation='v',
-    color_continuous_scale='Viridis',
-    title="Horas Dedicadas a Afazeres Domésticos por Região dividido por gênero"
+
+add_selectbox = st.sidebar.selectbox(
+    "Qual região deseja visualizar?",
+    ("Amazonas", "Bahia", "Ceará", "Pernambuco", "Todas (Gênero)", "Reportagens/Notícias")
 )
 
-st.plotly_chart(fig, use_container_width=True)
+if add_selectbox == "Todas (Gênero)":
+    df = pd.DataFrame({
+        'Regiao': ['Bahia', 'Pernambuco', 'Amazonas', 'Ceará'],
+        'Mulheres': [bahia_mulheres, pernambuco_mulheres, amazonas_mulheres, ceara_mulheres],
+        'Homens': [bahia_homens, pernambuco_homens, amazonas_homens, ceara_homens]
+    }).melt(id_vars=['Regiao'], var_name='Gênero', value_name='Horas')
+
+    fig = px.bar(
+        df, 
+        x='Regiao', y='Horas', 
+        color='Gênero',
+        barmode='group',
+        orientation='v',
+        color_continuous_scale='Viridis',
+        title="Horas Dedicadas a Afazeres Domésticos por Região dividido por gênero"
+    )
+    st.plotly_chart(fig, use_container_width=True)
 
 
+elif add_selectbox == "Reportagens/Notícias":
+    left, right = st.columns([2, 2])
+    left.image("img\image.png")
+    right.image("img\image (2).png")
 
-left, right = st.columns([2, 2])
-left.image("img\image.png")
-right.image("img\image (2).png")
+    left, right = st.columns([2.66, 1.5])
+    left.image("img\image (3).png")
+    right.image("img\image (4).png")
 
-left, right = st.columns([2.66, 1.5])
-left.image("img\image (3).png")
-right.image("img\image (4).png")
+elif add_selectbox == "Amazonas":
+    df = pd.DataFrame({
+        'Regiao': ['Mulheres','Homens'],
+        'Brancos': [amazonas_mulheres_brancas,amazonas_homens_brancos],
+        'Pretos/pardos': [amazonas_mulheres_pretas_pardas, amazonas_homens_pretos_pardos ]
+    }).melt(id_vars=['Regiao'], var_name='Gênero', value_name='Horas')
+
+    fig = px.bar(
+        df, 
+        x='Regiao', y='Horas', 
+        color='Gênero',
+        barmode='group',
+        orientation='v',
+        color_continuous_scale='Viridis',
+        title="Horas Dedicadas a Afazeres Domésticos no Amazonas"
+    )
+
+    st.plotly_chart(fig, use_container_width=True)
+
+elif add_selectbox == "Bahia":
+    df = pd.DataFrame({
+        'Regiao': ['Mulheres','Homens'],
+        'Brancos': [bahia_mulheres_brancas,bahia_homens_brancos],
+        'Pretos/pardos': [bahia_mulheres_pretas_pardas, bahia_homens_pretos_pardos ]
+    }).melt(id_vars=['Regiao'], var_name='Gênero', value_name='Horas')
+
+    fig = px.bar(
+        df, 
+        x='Regiao', y='Horas', 
+        color='Gênero',
+        barmode='group',
+        orientation='v',
+        color_continuous_scale='Viridis',
+        title="Horas Dedicadas a Afazeres Domésticos na Bahia"
+    )
+
+    st.plotly_chart(fig, use_container_width=True)
+
+elif add_selectbox == "Ceará":
+    df = pd.DataFrame({
+        'Regiao': ['Mulheres','Homens'],
+        'Brancos': [ceara_mulheres_brancas,ceara_homens_brancos],
+        'Pretos/pardos': [ceara_mulheres_pretas_pardas, ceara_homens_pretos_pardos ]
+    }).melt(id_vars=['Regiao'], var_name='Gênero', value_name='Horas')
+
+    fig = px.bar(
+        df, 
+        x='Regiao', y='Horas', 
+        color='Gênero',
+        barmode='group',
+        orientation='v',
+        color_continuous_scale='Viridis',
+        title="Horas Dedicadas a Afazeres Domésticos no Ceará"
+    )
+
+    st.plotly_chart(fig, use_container_width=True)
+
+elif add_selectbox == "Pernambuco":
+    df = pd.DataFrame({
+        'Regiao': ['Mulheres','Homens'],
+        'Brancos': [pernambuco_mulheres_brancas,pernambuco_homens_brancos],
+        'Pretos/pardos': [pernambuco_mulheres_pretas_pardas, pernambuco_homens_pretos_pardos ]
+    }).melt(id_vars=['Regiao'], var_name='Gênero', value_name='Horas')
+
+    fig = px.bar(
+        df, 
+        x='Regiao', y='Horas', 
+        color='Gênero',
+        barmode='group',
+        orientation='v',
+        color_continuous_scale='Viridis',
+        title="Horas Dedicadas a Afazeres Domésticos no Pernambuco"
+    )
+
+    st.plotly_chart(fig, use_container_width=True)
+
 
 
 
